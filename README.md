@@ -22,6 +22,9 @@ Bienvenue sur **Puissance 4**, une version en ligne du célèbre jeu de sociét�
 
 🎮 **Redémarrage Facile** : Relancez une partie en un clic grâce à un bouton de redémarrage rapide   
 
+<br>
+<br>
+
 ## 📸 Aperçu
 
 Voici à quoi ressemble l'application :   
@@ -83,6 +86,9 @@ Pour l'utiliser : [🟡 Puissance 4 🔴](https://66cf99504c8aa03235ed28da--stat
 <br>
 
 **images/** : Dossier pour les images et autres captures d'écran du projet   
+
+<br>
+<br>
 
 ## 🛠️ Installation et Utilisation
 
