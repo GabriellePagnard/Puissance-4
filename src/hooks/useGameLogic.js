@@ -18,6 +18,14 @@ export function useGameLogic() {
   const handleCellClick = (row, col) => {
     if (!isGameStarted || winner || board[row][col] !== '') return;
 
+    // Vérifiez que le jeton est placé dans la cellule la plus basse disponible
+    for (let r = 5; r >= 0; r--) {
+      if (board[r][col] === '') {
+        row = r;
+        break;
+      }
+    }
+
     const newBoard = board.map((rowArr, rowIndex) =>
       rowArr.map((cell, colIndex) => {
         if (rowIndex === row && colIndex === col && cell === '') {
