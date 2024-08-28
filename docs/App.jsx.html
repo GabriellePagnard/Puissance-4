@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { Box, Button, Flex, Heading, Text, VStack, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter } from '@chakra-ui/react';
+import Header from './components/Header';
+import Board from './components/Board';
+import { useGameLogic } from './hooks/useGameLogic';
+
+/**
+ * Composant principal de l'application Puissance 4.
+ * Utilise le hook useGameLogic pour gérer la logique du jeu.
+ */
+function App() {
+  const {
+    board,
+    currentPlayer,
+    isGameStarted,
+    winner,
+    winningCells,
+    showWinnerPopup,
+    applyBlur,
+    handleCellClick,
+    startGame,
+    resetGame
+  } = useGameLogic();
+
+  return (
+    &lt;Flex
+      direction="column"
+      align="center"
+      justify="center"
+      minHeight="100vh"
+      position="relative"
+      p={4}
+      maxWidth="100%"  // Limite la largeur maximale à 100%
+      _before={{
+        content: '""',
+        position: 'absolute',
+        top: '-5%',
+        left: '-5%',
+        right: '-5%',
+        bottom: '-5%',
+        bgImage: "url('/assets/background.jpg')",
+        bgSize: 'cover',
+        bgPosition: 'center',
+        bgRepeat: 'no-repeat',
+        filter: 'blur(3px)',
+        zIndex: -2,
+      }}
+    >
+      
+      &lt;Box
+        position="relative"
+        bg="rgba(255, 255, 255, 0.7)"  // Fond blanc transparent
+        rounded="md"
+        p={4}
+        boxShadow="lg"
+        zIndex={1}
+        textAlign="center"
+      >
+        &lt;Heading as="h1" size="2xl" color="red.800" mb={5} fontWeight="bold" textAlign="center">
+          Puissance 4
+        &lt;/Heading>
+
+        &lt;VStack spacing={5} textAlign="center">
+          {isGameStarted &amp;&amp; !showWinnerPopup &amp;&amp; (
+            &lt;Text fontSize="xl" color="red.800" fontWeight="bold" textAlign="center">
+              Joueur actuel: &lt;Text as="span" color={currentPlayer === 'Red' ? 'red.600' : 'yellow.500'}>{currentPlayer}&lt;/Text>
+            &lt;/Text>
+          )}
+        &lt;/VStack>
+
+        &lt;Box
+          position="relative"
+          p={4}
+          bg="blue.500"  // Couleur de la grille et de la pop-up
+          rounded="md"
+          mt={5}
+          boxShadow="lg"
+          filter={isGameStarted &amp;&amp; !winner ? 'none' : applyBlur ? 'blur(5px)' : 'none'} // Appliquer le flou après un délai
+          transition="filter 0.5s ease"
+        >
+          &lt;Board board={board} onCellClick={handleCellClick} winningCells={winningCells} />
+        &lt;/Box>
+      &lt;/Box>
+      
+      {!isGameStarted &amp;&amp; (
+        &lt;Flex
+          align="center"
+          justify="center"
+          position="absolute"
+          top="0"
+          left="0"
+          right="0"
+          bottom="0"
+          zIndex={2}
+        >
+          &lt;Button
+            colorScheme="red"
+            bg="red.700"  // Couleur rouge foncé
+            size="lg"
+            fontSize="2xl" 
+            padding="2rem 4rem"  // Bouton plus gros
+            style={{ textTransform: 'uppercase' }}  // Texte en majuscules
+            onClick={startGame}
+            zIndex={3}
+          >
+            Démarrer le jeu
+          &lt;/Button>
+        &lt;/Flex>
+      )}
+
+      {showWinnerPopup &amp;&amp; (
+        &lt;Modal isOpen={true} onClose={resetGame} isCentered>
+          &lt;ModalOverlay />
+          &lt;ModalContent bg="blue.500">
+            &lt;ModalHeader textAlign="center" fontSize="2xl" fontWeight="bold">
+              Le gagnant est &lt;Text as="span" color={winner === 'Red' ? 'red.600' : 'yellow.500'}>{winner}&lt;/Text>
+            &lt;/ModalHeader>
+            &lt;ModalBody>
+              &lt;Text fontSize="lg" textAlign="center">
+                Félicitations ! &lt;Text as="span" color={winner === 'Red' ? 'red.600' : 'yellow.500'}>{winner}&lt;/Text> a gagné la partie.
+              &lt;/Text>
+            &lt;/ModalBody>
+            &lt;ModalFooter justifyContent="center">
+              &lt;Button
+                colorScheme="red"
+                bg="red.700"  // Couleur rouge foncé
+                size="lg"
+                fontSize="xl"
+                style={{ textTransform: 'uppercase' }}  // Texte en majuscules
+                padding="2rem 4rem"  // Bouton plus gros
+                onClick={resetGame}
+              >
+                Rejouer
+              &lt;/Button>
+            &lt;/ModalFooter>
+          &lt;/ModalContent>
+        &lt;/Modal>
+      )}
+    &lt;/Flex>
+  );
+}
+
+export default App;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Board">Board</a></li><li><a href="global.html#Cell">Cell</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#checkWinner">checkWinner</a></li><li><a href="global.html#useGameLogic">useGameLogic</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Aug 28 2024 23:13:03 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

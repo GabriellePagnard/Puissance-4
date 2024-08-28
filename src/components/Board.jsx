@@ -2,6 +2,13 @@ import React from 'react';
 import { SimpleGrid } from '@chakra-ui/react';
 import Cell from './Cell';
 
+/**
+ * Composant Board qui représente le plateau de jeu de Puissance 4.
+ * @param {Object} props - Les propriétés du composant.
+ * @param {Array} props.board - Le tableau de l'état du plateau de jeu.
+ * @param {Function} props.onCellClick - La fonction à appeler lors du clic sur une cellule.
+ * @param {Array} props.winningCells - Les cellules qui font partie de la combinaison gagnante.
+ */
 function Board({ board, onCellClick, winningCells }) {
   return (
     <SimpleGrid 

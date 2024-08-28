@@ -1,6 +1,13 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
+/**
+ * Composant Cell qui représente une cellule individuelle sur le plateau de jeu.
+ * @param {Object} props - Les propriétés du composant.
+ * @param {string} props.value - La valeur de la cellule ('Red', 'Yellow' ou '').
+ * @param {Function} props.onClick - La fonction à appeler lors du clic sur la cellule.
+ * @param {boolean} props.isWinningCell - Indique si la cellule fait partie de la combinaison gagnante.
+ */
 function Cell({ value, onClick, isWinningCell }) {
   return (
     <Box
