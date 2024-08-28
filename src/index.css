@@ -23,3 +23,16 @@
 .cell.yellow {
   background-color: yellow;
 }
+
+.winning-cell {
+  animation: highlight 1s infinite alternate;
+}
+
+@keyframes highlight {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}

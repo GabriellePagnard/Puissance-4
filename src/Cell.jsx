@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
-function Cell({ value, onClick }) {
+function Cell({ value, onClick, isWinningCell }) {
   const getColor = (value) => {
     if (value.toLowerCase() === 'red') {
       return 'red.500';
     } else if (value.toLowerCase() === 'yellow') {
-      return 'yellow.400'; // Utilisation d'un jaune plus vif
+      return 'yellow.400';
     } else {
       return 'gray.300';
     }
@@ -21,7 +21,7 @@ function Cell({ value, onClick }) {
       display="flex"
       alignItems="center"
       justifyContent="center"
-      boxShadow="md"
+      boxShadow={isWinningCell ? '0 0 10px 5px rgba(255, 215, 0, 0.8)' : 'md'}
       cursor={value === '' ? 'pointer' : 'not-allowed'}
       transition="transform 0.2s"
       _hover={{ transform: value === '' ? 'scale(1.1)' : 'none' }}
