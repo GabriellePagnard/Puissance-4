@@ -57,7 +57,7 @@ function App() {
         textAlign="center"
       >
         <Heading as="h1" size="2xl" color="red.800" mb={5} fontWeight="bold" textAlign="center">
-          Puissance 4
+        🔴 Puissance 4 🟡
         </Heading>
 
         <VStack spacing={5} textAlign="center">
